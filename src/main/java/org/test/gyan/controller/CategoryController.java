@@ -12,6 +12,7 @@ import org.test.gyan.model.SubCategory;
 import org.test.gyan.repositry.CategoryRepository;
 import org.test.gyan.repositry.SubCategoryRepositry;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -46,5 +47,18 @@ public class CategoryController {
         Category category=  categoryRepository.findById(categoryId).get();
         log.info("Category = "+category);
         return category;
+    }
+
+    @GetMapping("/subCategoryList")
+    public ModelAndView viewSubCategoryByCategoryId(@RequestParam Long cId){
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<Category> categoryOptional = categoryRepository.findById(cId);
+        if (categoryOptional.isPresent()){
+            modelAndView.addObject("CategoryName", categoryOptional.get().getCategoryName());
+            List<SubCategory> subCategory = categoryOptional.get().getSubCategory();
+            modelAndView.addObject("subCategories", subCategory);
+            modelAndView.setViewName("subCategoryList.html");
+        }
+        return modelAndView;
     }
 }
