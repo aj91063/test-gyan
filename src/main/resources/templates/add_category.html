@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link rel="stylesheet" href="./css/addCategory.css">
+<!--    <link rel="stylesheet" href="./css/user.css">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div th:replace="~{Sidebar :: navbar}">...</div>
+
+        <!---------------------------- END OF ASIDE----------------------------->
+        <main>
+            <h1>Add Category</h1>
+            <div class="date">
+                <!-- <input type="date"> -->
+                <p id="dateId">Date : </p>
+            </div>
+           
+              
+            <div class="add-category">
+                    <form th:action="@{/saveCategory}" method="post" th:object="${category}">
+                        <!-- <div>
+                            <label for="categoryName">Category Name</label><br>
+                            <input id="categoryName" type="text" name="categoryName">
+                        </div> -->
+                        <div class="input-container">
+                            <input placeholder="Category Name" id="capitalizedInput" class="input-field" type="text" name="categoryName" oninput="capitalizeInput()" required>
+                            <label for="input-field" class="input-label">Category Name</label>
+                            <span class="input-highlight"></span>
+                        </div>
+<!--                        <div class="input-container">-->
+<!--                            <input placeholder="Sub Category Name" class="input-field" type="text">-->
+<!--                            <label for="input-field" class="input-label">Sub Category Name</label>-->
+<!--                            <span class="input-highlight"></span>-->
+<!--                        </div>-->
+                        <div class="input-container">
+                            <textarea placeholder="Category Description" rows="7" class="input-field" type="text" name="description" required></textarea>
+                            <label for="input-field" class="input-label">Category Description</label>
+                            <span class="input-highlight"></span>
+                        </div>
+                        <div class="btns">
+                                <button class="btn-save"><span class="material-symbols-outlined">
+                                    save
+                                    </span> Save</button>
+                        <input class="btn-reset" type="reset" value="Clear">
+                        </div>
+                    </form>
+            </div>
+        </main>
+
+        <!-- -------------END OF MAIN--------- -->
+        <div class="right">
+            <div th:replace="~{top :: top}">...</div>
+        </div>
+
+    </div>
+
+    <!-- <script src="./js/orders.js"></script> -->
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

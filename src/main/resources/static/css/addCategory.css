@@ -1,0 +1,132 @@
+@import url("style.css");
+
+
+/* main {
+    margin-top: 6rem;
+    padding: 0 1.8rem;
+} */
+
+.add-category{
+    width: 75vw;
+    height: 70vh;
+    margin-top: 2rem;
+    background: var(--color-white);
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+
+.add-category:hover{
+    box-shadow: none;
+}
+
+
+/* Input container */
+.input-container {
+    position: relative;
+    margin: 30px;
+  }
+  
+  /* Input field */
+  .input-field {
+    display: block;;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    outline: none;
+    background-color: var(--color-background);
+  }
+  
+  /* Input label */
+  .input-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 16px;
+    color: rgba(204, 204, 204, 0);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+  
+  /* Input highlight */
+  .input-highlight {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: var(--color-primary);
+    transition: all 0.3s ease;
+  }
+  
+  /* Input field:focus styles */
+  .input-field:focus + .input-label {
+    top: -20px;
+    font-size: 12px;
+    color: var(--color-primary);
+  }
+  
+  .input-field:focus + .input-label + .input-highlight {
+    width: 100%;
+  }
+
+  .btns{
+    margin-left: 4rem;
+  }
+
+  .btn-save{
+    display: flex;
+    align-items: center;
+    background: var(--color-primary);
+    padding: 15px 35px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    position: relative;
+    align-items: center;
+    transition: all 300ms ease
+  }
+
+
+   .btn-save:hover{
+    box-shadow: none;
+   }
+
+   .btn-reset{
+    display: flex;
+    align-items: center;
+    background: var(--color-danger);
+    padding: 1.1rem 35px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--color-white);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    transition: all 300ms ease;
+    margin-top: -50px;
+    margin-left: 140px;
+  }
+   .btn-reset:hover{
+    box-shadow: none;
+   }
+  
+   @media screen and (max-width:500px){
+    .add-category{
+      width: 100%;
+    }
+    .btns{
+      margin: auto 2rem;
+    }
+    .input-container{
+      width: 100%;
+      margin: 1.5rem 0.6rem;
+    }
+   }

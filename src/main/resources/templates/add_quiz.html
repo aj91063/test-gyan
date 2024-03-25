@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Quiz</title>
+    <link rel="stylesheet" href="./css/add-quiz.css">
+    <!--    <link rel="stylesheet" href="./css/user.css">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#category').change(function () {
+                var categoryId = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "/getSubCategory",
+                    data: {categoryId: categoryId},
+                    dataType: "json",
+                    success: function (data) {
+                        $('#subCategory').empty();
+                        $.each(data, function (index, subCategory) {
+                            $('#subCategory').append('<option value="' + subCategory.subCategoryId + '">' + subCategory.subCategoryName + '</option>');
+                        });
+                    },
+                    error: function () {
+                        alert('Error occurred while fetching subCategory!');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div th:replace="~{Sidebar :: navbar}">...</div>
+
+        <!---------------------------- END OF ASIDE----------------------------->
+        <main>
+            <h1>Add Quiz</h1>
+            <div class="date">
+                <!-- <input type="date"> -->
+                <p id="dateId">Date : </p>
+            </div>
+
+
+            <div class="add-quiz">
+                <form th:action="@{/saveQuiz}" method="post" th:object="${quiz}">
+                    <!-- <div>
+                            <label for="categoryName">Category Name</label><br>
+                            <input id="categoryName" type="text" name="categoryName">
+                        </div> -->
+                    <div class="input-container">
+                        <input placeholder="Quiz Name" class="input-field" type="text" name="quizName" id="capitalizedInput" oninput="capitalizeInput()" required>
+                        <label for="input-field" class="input-label">Quiz Name</label>
+                        <span class="input-highlight"></span>
+                    </div>
+
+                    <div class="input-container">
+                        <!-- <input placeholder="Sub Category Name" class="input-field" type="text"> -->
+                        <select name="categoryName" id="category" class="input-field" style="color: #677483;line-height: 20px;" required>
+                            <option selected disabled value="">---Select Category Name---</option>
+                            <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.categoryName}">Program</option>
+                        </select>
+                        <label for="input-field" class="input-label">Select Category Name</label>
+                        <span class="input-highlight"></span>
+                    </div>
+
+                    <div class="input-container">
+                        <!-- <input placeholder="Sub Category Name" class="input-field" type="text"> -->
+                        <select name="subCategoryId" id="subCategory"  class="input-field"  style="color: #677483;line-height: 20px;">
+                            <option selected disabled value="">---Select Sub-Category Name---</option>
+                        </select>
+                        <label for="input-field" class="input-label">Select Sub-Category Name</label>
+                        <span class="input-highlight"></span>
+                    </div>
+
+
+                    <div class="input-container">
+                        <textarea placeholder="Quiz Description" name="description" rows="5" class="input-field"
+                            type="text" required></textarea>
+                        <label for="input-field" class="input-label">Quiz Description</label>
+                        <span class="input-highlight"></span>
+                    </div>
+                    <div class="publish">
+                        <input class="btn-publish" id="publish" type="checkbox" name="publish" value="true">
+                        <label for="publish" style="font-size: 18px;"><b>Publish</b></label>
+                    </div>
+                    <div class="btns">
+                        <button class="btn-save">Save</button>
+                        <input class="btn-reset" type="reset" value="Clear">
+                    </div>
+                   
+                </form>
+            </div>
+        </main>
+
+        <!-- -------------END OF MAIN--------- -->
+        <div class="right">
+            <div th:replace="~{top :: top}">...</div>
+        </div>
+
+    </div>
+
+    <!-- <script src="./js/orders.js"></script> -->
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

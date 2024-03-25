@@ -1,0 +1,50 @@
+@import url("./add-quiz.css");
+
+.option{
+ display: flex;
+ column-gap: 6.5rem;
+
+}
+.tox-promotion{
+    display: none;
+}
+svg{
+    display: none;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+.label-photo{
+    color: var(--color-primary);
+    height: 41px;
+    font-size: 1.2rem;
+    width: 100%;
+    border: 2px dashed var(--color-primary);
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.label-photo:hover{
+    background: var(--color-primary);
+    color: var(--color-white);
+    cursor: pointer;
+}
+.select-img{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap:4rem;
+}
+
+@media screen and (max-width:768px) {
+    .option{
+        display: block;
+    }
+    .select-img{
+        display: block;
+    }
+}

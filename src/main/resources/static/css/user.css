@@ -1,0 +1,52 @@
+@import url("style.css");
+
+ .tableFixHead {
+       overflow-y: auto;
+       height: 500px;
+       transition: all 300ms ease;
+     }
+     .tableFixHead thead th {
+       position: sticky;
+       top: 0px;
+     }
+   .tableFixHead  table {
+       border-collapse: collapse;
+       /*width: 100%;*/
+        scrollbar-width: 3px;
+
+     }
+
+     .edit-btn{
+         background: teal;
+         padding:5px 10px;
+         border-radius:3px;
+         color:var(--color-white);
+     }
+
+      .view-btn{
+              background: var(--color-primary);
+              padding:5px 10px;
+              border-radius:3px;
+              color:var(--color-white);
+          }
+
+    .tableFixHead th,
+   .tableFixHead  td {
+       padding: 8px 16px;
+       text-align: center;
+       border-bottom: 1px solid var(--color-info-light);
+     }
+   .tableFixHead  th {
+       background: var(--color-dark);
+       color:var(--color-white);
+     }
+
+   .tableFixHead  table tbody tr:last-child td{
+         border: none;
+     }
+
+    @media screen and (max-width: 480px){
+    .tableFixHead{
+
+    }
+   }
