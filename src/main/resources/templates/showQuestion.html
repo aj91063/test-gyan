@@ -19,35 +19,34 @@
 
         <!---------------------------- END OF ASIDE----------------------------->
         <main>
-            <h1>Quizzes</h1>
+            <h1>Question</h1>
             <div class="date">
                 <!-- <input type="date"> -->
                 <p id="dateId">Date : </p>
             </div>
-            <h2 style="margin-top:15px" th:text="'Sub-Category Name: ' + ${subCategory}"></h2>
+            <h2 style="margin-top:15px" th:text="'Quiz Name: ' + ${quiz}"></h2>
             <div class="tableFixHead">
                 <table style="width: 75vw;">
                     <thead>
                         <tr>
-                            <th>Quiz Name</th>
+                            <th>Question Title</th>
                             <th>Publish</th>
                             <th>Created By</th>
                             <th colspan="2">Action</th>
                         </tr>                 
                     </thead>
                     <tbody>
-                        <tr th:each="quiz : ${quizzes}">
-                            <td th:text="${quiz.quizName}">Name</td>
-                            <td th:if="${quiz.publish == 'true'}" class="success">Publish</td>
-                            <td th:unless="${quiz.publish == 'false'}" class="danger">Unpublish</td>
-                            <td th:text="${quiz.createdBy}">Admin</td>
-                            <td><a href="#" class="edit-btn">Edit</a></td>
-                            <td><a th:href="@{/showQuestion(quizId=${quiz.quizId})}" class="view-btn">Questions</a></td>
-                        </tr>
+                    <tr>
+                        <td>What is data type?</td>
+                        <td>Publish</td>
+                        <td>Admin</td>
+                        <td><a href="#" class="edit-btn">Edit</a></td>
+                        <td><a href="#" class="view-btn">View</a></td>
+                    </tr>
                     </tbody>
                 </table>
 
-<!--                <a th:href="@{/addQuestion(subCategoryId=${subCategoryId})}">Add Question</a>-->
+                <a th:href="@{/addQuestion}">Add Question</a>
             </div>
         </main>
 
