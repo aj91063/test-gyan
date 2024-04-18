@@ -19,32 +19,35 @@
 
         <!---------------------------- END OF ASIDE----------------------------->
         <main>
-            <h1>Sub-Categories</h1>
+            <h1>Quizzes</h1>
             <div class="date">
                 <!-- <input type="date"> -->
                 <p id="dateId">Date : </p>
             </div>
-            <h2 style="margin-top:15px" th:text="'Category Name: ' + ${CategoryName}"></h2>
+            <h2 style="margin-top:15px" th:text="'Sub-Category Name: ' + ${subCategory}"></h2>
             <div class="tableFixHead">
                 <table style="width: 75vw;">
                     <thead>
                         <tr>
                             <th>Sub-Category Name</th>
-                            <th>Total Quizzes</th>
+                            <th>Publish</th>
                             <th>Created By</th>
                             <th colspan="2">Action</th>
                         </tr>                 
                     </thead>
                     <tbody>
-                        <tr th:each="subCategory : ${subCategories}">
-                            <td th:text="${subCategory.subCategoryName}">Name</td>
-                            <td th:text="${subCategory.quizzes.size()}">0</td>
-                            <td th:text="${subCategory.createdBy}">Admin</td>
+                        <tr th:each="quiz : ${quizzes}">
+                            <td th:text="${quiz.quizName}">Name</td>
+                            <td th:if="${quiz.publish == 'true'}" class="success">Publish</td>
+                            <td th:unless="${quiz.publish == 'false'}" class="danger">Unpublish</td>
+                            <td th:text="${quiz.createdBy}">Admin</td>
                             <td><a href="#" class="edit-btn">Edit</a></td>
-                            <td><a th:href="@{/quizesList(subCategoryId=${subCategory.subCategoryId})}" class="view-btn">View</a></td>
+                            <td><a th:href="@{/addQuestion(quizId=${quiz.quizId})}" class="view-btn">Questions</a></td>
                         </tr>
                     </tbody>
                 </table>
+
+<!--                <a th:href="@{/addQuestion(subCategoryId=${subCategoryId})}">Add Question</a>-->
             </div>
         </main>
 

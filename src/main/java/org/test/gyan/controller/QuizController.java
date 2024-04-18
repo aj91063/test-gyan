@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.test.gyan.model.Quiz;
 import org.test.gyan.model.SubCategory;
@@ -39,5 +36,12 @@ public class QuizController {
             log.info("SubCategory Id : "+subCategoryId+" not available");
         }
         return new ModelAndView("redirect:/addQuiz");
+    }
+
+    @GetMapping("/addQuestion")
+    public ModelAndView addQuestion(@RequestParam Long quizId){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("add-questions.html");
+        return modelAndView;
     }
 }
