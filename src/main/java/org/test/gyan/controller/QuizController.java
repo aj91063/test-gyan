@@ -48,6 +48,7 @@ public class QuizController {
             if(quiz.isPresent()){
                 modelAndView.addObject("quiz", quiz.get().getQuizName());
                 modelAndView.addObject("quizId",quiz.get().getQuizId());
+                modelAndView.addObject("questions", quiz.get().getQuestions());
             }
 
         }
@@ -58,6 +59,7 @@ public class QuizController {
     @GetMapping("/addQuestion")
     public ModelAndView addQuestion(@RequestParam Long quizId){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("quizId",quizId);
         modelAndView.setViewName("add-questions.html");
         return modelAndView;
     }
