@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
-    <link rel="stylesheet" href="./css/user.css">
+    <link rel="stylesheet" href="./css/showQuestion.css">
 <!--    <link rel="stylesheet" href="./css/user.css">-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+
+    </style>
+
 </head>
 
 <body>
@@ -25,8 +30,16 @@
                 <p id="dateId">Date : </p>
             </div>
             <h2 style="margin-top:15px" th:text="'Quiz Name: ' + ${quiz}"></h2>
+<!--            <div class="addQuestion">-->
+
+                <a class="addQuestion" th:href="@{/addQuestion(quizId=${quizId})}">
+
+                  <span class="material-icons-sharp" >add</span>
+                    <h3 style="font-size:16px">Add Question</h3>
+                </a>
+<!--            </div>-->
             <div class="tableFixHead">
-                <table style="width: 75vw;">
+                <table style="width: 75vw; margin-top:30px">
                     <thead>
                         <tr>
                             <th>Question Title</th>
@@ -46,7 +59,7 @@
                     </tbody>
                 </table>
 
-                <a th:href="@{/addQuestion}">Add Question</a>
+
             </div>
         </main>
 

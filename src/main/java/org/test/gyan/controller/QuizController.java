@@ -47,6 +47,7 @@ public class QuizController {
             Optional<Quiz> quiz = quizRepository.findById(quizId);
             if(quiz.isPresent()){
                 modelAndView.addObject("quiz", quiz.get().getQuizName());
+                modelAndView.addObject("quizId",quiz.get().getQuizId());
             }
 
         }
@@ -55,7 +56,7 @@ public class QuizController {
     }
 
     @GetMapping("/addQuestion")
-    public ModelAndView addQuestion(){
+    public ModelAndView addQuestion(@RequestParam Long quizId){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-questions.html");
         return modelAndView;

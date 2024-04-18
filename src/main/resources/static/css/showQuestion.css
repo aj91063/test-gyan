@@ -1,0 +1,27 @@
+@import url("./user.css");
+
+.addQuestion{
+    border: 2px dashed var(--color-primary);
+    margin-left:80%;
+    margin-top: -60px;
+    border-radius: 8px;
+    padding:18px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.addQuestion:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+
+
+
