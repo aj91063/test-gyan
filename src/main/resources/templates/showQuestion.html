@@ -50,7 +50,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="question : ${questions}">
-                        <td th:text="${question.title}">What is data type?</td>
+                        <td th:text='${question.title.replaceAll("<[^>]*>", "")}'>What is data type?</td>
                         <td>Publish</td>
                         <td>Admin</td>
                         <td><a href="#" class="edit-btn">Edit</a></td>
