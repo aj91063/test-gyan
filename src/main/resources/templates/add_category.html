@@ -12,7 +12,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 
-<body>
+<body onload="myFunction()">
 
     <div class="container">
         <div th:replace="~{Sidebar :: navbar}">...</div>
@@ -27,7 +27,19 @@
            
               
             <div class="add-category">
+
                     <form th:action="@{/saveCategory}" method="post" th:object="${category}">
+                        <div class="success_alert" th:if="${!#strings.isEmpty(successMsg)}" id="alertBox">
+                            <i class="fa fa-check"></i>
+                            [[${successMsg}]]
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+                        <div class="warn_alert" th:if="${!#strings.isEmpty(errorMsg)}" id="alertBox">
+                            <i class="fa fa-times-circle"></i>
+                            [[${errorMsg}]]
+                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        </div>
+
                         <!-- <div>
                             <label for="categoryName">Category Name</label><br>
                             <input id="categoryName" type="text" name="categoryName">
@@ -65,6 +77,14 @@
     </div>
 
     <!-- <script src="./js/orders.js"></script> -->
+    <script>
+        function myFunction() {
+           setTimeout(function() {
+             document.getElementById("alertBox").style.display='none';
+        }, 5000);
+
+        }
+    </script>
     <script src="./js/script.js"></script>
 </body>
 

@@ -3,7 +3,9 @@ package org.test.gyan.service.serviceImpl;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 import org.test.gyan.model.Category;
+import org.test.gyan.model.Quiz;
 import org.test.gyan.model.SubCategory;
 import org.test.gyan.repositry.CategoryRepository;
 import org.test.gyan.repositry.SubCategoryRepositry;
@@ -34,5 +36,40 @@ public class SubCategoryServiceImpl implements SubCategoryService {
           log.error("<<<< This id not found : "+categoryId);
       }
     return   subCategories;
+    }
+
+    @Override
+    public ModelAndView saveSubCategory(SubCategory subCategory, Long categoryId) {
+
+
+        if (categoryId != null) {
+            Optional<Category> category = categoryRepository.findById(categoryId);
+            if (category.isPresent()) {
+                subCategory.setCategory(category.get());
+                subCategoryRepositry.save(subCategory);
+                log.info("CategoryName : " + subCategory.getCategory().getCategoryName());
+            }
+        } else {
+            log.info("Category Id : " + categoryId + " not available");
+        }
+        log.info("subCategoryName : " + subCategory.getSubCategoryName());
+
+
+        return new ModelAndView("redirect:/addSubCategory");
+    }
+
+    @Override
+    public ModelAndView quizessList(Long subCategoryId) {
+        ModelAndView modelAndView = new ModelAndView();
+        Optional<SubCategory> subCategory = subCategoryRepositry.findById(subCategoryId);
+        if (subCategory.isPresent()) {
+            modelAndView.addObject("subCategory", subCategory.get().getSubCategoryName());
+            List<Quiz> quizzes = subCategory.get().getQuizzes();
+            modelAndView.addObject("quizzes",quizzes);
+            modelAndView.addObject("subCategoryId",subCategoryId);
+            modelAndView.setViewName("quizess.html");
+        }
+
+        return modelAndView;
     }
 }
