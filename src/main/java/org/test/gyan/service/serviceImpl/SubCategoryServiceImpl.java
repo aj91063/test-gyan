@@ -12,6 +12,7 @@ import org.test.gyan.repositry.SubCategoryRepositry;
 import org.test.gyan.service.SubCategoryService;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
@@ -46,7 +47,21 @@ public class SubCategoryServiceImpl implements SubCategoryService {
             Optional<Category> category = categoryRepository.findById(categoryId);
             if (category.isPresent()) {
                 subCategory.setCategory(category.get());
-                subCategoryRepositry.save(subCategory);
+                   List<SubCategory> subCategory1= subCategoryRepositry.findBySubCategoryNameAndCategoryName(
+                        subCategory.getSubCategoryName(),category.get().getCategoryName());
+                   if(subCategory1 == null){
+                       subCategoryRepositry.save(subCategory);
+                   }else {
+                      Iterator<SubCategory> subCategoryIterator=subCategory1.iterator();
+                      while (subCategoryIterator.hasNext()){
+                          SubCategory subCategory2=subCategoryIterator.next();
+                          log.info("subCategory1 subCategory name: " + subCategory2.getSubCategoryName()+" is already exits");
+                          log.info("subCategory1 categoryName: " + subCategory2.getCategory().getCategoryName());
+                      }
+
+
+                   }
+
                 log.info("CategoryName : " + subCategory.getCategory().getCategoryName());
             }
         } else {
